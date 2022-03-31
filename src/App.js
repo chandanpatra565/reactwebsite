@@ -7,7 +7,6 @@ import MovieInfoComponent from './component/movieinfocomponent';
 export const API_KEY = "688ef296";
 
 
-
 const Contanir = styled.div`
     display : flex;
     flex-direction : column;
@@ -78,7 +77,7 @@ function App() {
 
   const [searchQuery,updateSearchQuery] = useState();
 
-  const [movieList, updateMovieList] = useState([]);
+  const [movieList, updateMovieList] = useState();
 
   const [selectedMovieID, onMovieSelectID] = useState();
 
@@ -104,6 +103,7 @@ function App() {
         <AppName>
           <MovieImg src='/amuzi.png'></MovieImg>
             Amuzi Movie App
+            
         </AppName>
         <SeacrBox>
             <SeacrIcon src='/search.png'></SeacrIcon>
@@ -116,10 +116,10 @@ function App() {
         </SeacrBox>
       </Header>
       {
-        selectedMovieID && <MovieInfoComponent selectedMovie={selectedMovieID} onMovieSelect={onMovieSelectID}></MovieInfoComponent>
+        movieList && selectedMovieID && <MovieInfoComponent selectedMovie={selectedMovieID} onMovieSelect={onMovieSelectID}></MovieInfoComponent>
       }
       <MovieListContainer>
-      {movieList?.length ? (
+        {movieList?.length? (
           movieList.map((movie,index) => (
             <MovieComponent key={index} movie={movie} onMovieSelect={onMovieSelectID}/>
           ))
